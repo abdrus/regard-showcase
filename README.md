@@ -14,7 +14,7 @@ docker compose build --progress=plain  --build-arg USER_ID=$(id -u ${USER}) --bu
 docker compose up -d
 ```
 
-Проект доступен по адресу http://localhost
+Проект доступен по адресу http://localhost:8080
 
 ## Deploy
 
@@ -22,7 +22,17 @@ docker compose up -d
 
 Код вливается в `main` через pull-request'ы после успешного выполнения всех шагов CI
 
+## Запуск тестов
+
+```shell
+docker compose exec app bash
+php artisan test
+```
+
 ## Задачи
+
+- Решения в папке app/Problems
+- Тесты в папке Tests
 
 ### №1 Развернуть список
 
