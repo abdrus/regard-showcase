@@ -28,7 +28,7 @@ services:
         ports:
             - "8080:80"
         volumes:
-            - ./regard/:/var/www
+            - ./:/var/www
             - ./nginx/conf.d/:/etc/nginx/conf.d/
         networks:
             - regard-network
@@ -44,7 +44,7 @@ services:
         container_name: regard_app
         working_dir: /application
         volumes:
-            - ./regard:/var/www
+            - ./:/var/www
             - ./docker/php.ini:/usr/local/etc/php/conf.d/local.ini
         networks:
             - regard-network
