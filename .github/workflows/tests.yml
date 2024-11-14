@@ -19,7 +19,8 @@ jobs:
 
             - name: Provision Application
               run: |
-                  cp regard/.env.example regard/.env
+                  cd regard
+                  cp .env.example .env
                   php artisan key:generate
 
             - name: Run Tests
