@@ -1,0 +1,58 @@
+version: "3.5"
+services:
+
+    db:
+        container_name: regard_db
+        image: postgres
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: regard
+            POSTGRES_DB: regard
+            POSTGRES_PASSWORD: regard
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready"]
+            interval: 1s
+            timeout: 5s
+            retries: 10
+        volumes:
+            - regard-data:/var/lib/postgresql/data
+        ports:
+            - "5532:5432"
+        networks:
+            - regard-network
+
+    nginx:
+        image: nginx:alpine
+        restart: unless-stopped
+        container_name: regard_nginx
+        ports:
+            - "8080:80"
+        volumes:
+            - ./regard/:/var/www
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - regard-network
+
+    app:
+        build:
+            args:
+                USER_ID: ${USER_ID:-0}
+                WWWGROUP: ${GROUP_ID:-0}
+            context: ./docker
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        container_name: regard_app
+        working_dir: /application
+        volumes:
+            - ./regard:/var/www
+            - ./docker/php.ini:/usr/local/etc/php/conf.d/local.ini
+        networks:
+            - regard-network
+
+volumes:
+    regard-data:
+        driver: local
+
+networks:
+    regard-network:
+        driver: bridge
