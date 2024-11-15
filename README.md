@@ -1,7 +1,7 @@
 # regard-showcase
 Тестовые задания для собеседования в Regard
 
-![Codestyle fixed](https://github.com/abdrus/regard-showcase/actions/workflows/php.yml/badge.svg)
+![Codestyle fixed](https://github.com/abdrus/regard-showcase/actions/workflows/laravel-pint.yml/badge.svg)
 ![Passing tests](https://github.com/abdrus/regard-showcase/actions/workflows/tests.yml/badge.svg)
 
 ## Разработка
