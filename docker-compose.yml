@@ -21,6 +21,23 @@ services:
         networks:
             - regard-network
 
+    db-test:
+        container_name: regard_db_test
+        image: postgres
+        restart: unless-stopped
+        env_file: .env.testing
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready"]
+            interval: 1s
+            timeout: 5s
+            retries: 10
+        volumes:
+            - pgdata-test:/var/lib/postgresql/data
+        ports:
+            - "5632:5432"
+        networks:
+            - regard-network
+
     nginx:
         image: nginx:alpine
         restart: unless-stopped
@@ -52,6 +69,9 @@ services:
 volumes:
     regard-data:
         driver: local
+    pgdata-test:
+        driver: local
+
 
 networks:
     regard-network:
