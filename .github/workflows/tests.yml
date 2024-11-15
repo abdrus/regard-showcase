@@ -4,6 +4,21 @@ on:
 jobs:
     run-tests:
         runs-on: ubuntu-latest
+
+        services:
+          redis:
+            image: redis:7.4
+            ports:
+              - 6379:6379
+          db-test:
+            image: postgres:17
+            ports:
+              - 5432:5432
+            env:
+              POSTGRES_USER: regard
+              POSTGRES_DB: regard
+              POSTGRES_PASSWORD: regard
+
         steps:
             - name: Checkout codebase
               uses: actions/checkout@v4
