@@ -41,10 +41,6 @@ class Packages
      */
     public function hasPairAlready(array $pairs, int $index1, int $index2): bool
     {
-        if (in_array([$index1, $index2], $pairs) or in_array([$index2, $index1], $pairs)) {
-            return true;
-        }
-
-        return false;
+        return (in_array([$index1, $index2], $pairs) or in_array([$index2, $index1], $pairs));
     }
 }
