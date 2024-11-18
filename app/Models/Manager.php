@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Order;
 
 class Manager extends Model
 {
@@ -15,7 +14,7 @@ class Manager extends Model
 
     protected $fillable = [
         'firstname',
-        'lastname'
+        'lastname',
     ];
 
     public function orders(): HasMany
