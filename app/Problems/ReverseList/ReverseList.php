@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Problems\ReverseList;
-use App\Problems\ReverseList\ReverseNode;
 
 class ReverseList
 {
@@ -10,8 +9,7 @@ class ReverseList
         $previous = null;
         $current = $node;
 
-        while ($current)
-        {
+        while ($current) {
             $next = $current->next;
             $current->next = $previous;
             $previous = $current;
@@ -20,5 +18,4 @@ class ReverseList
 
         return $previous;
     }
-
 }
